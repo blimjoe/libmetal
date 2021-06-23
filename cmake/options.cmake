@@ -70,4 +70,9 @@ option (WITH_DEFAULT_LOGGER "Build with default logger" ON)
 option (WITH_DOC "Build with documentation" ON)
 
 set (PROJECT_EC_FLAGS "-Wall -Werror -Wextra" CACHE STRING "")
+
+if(CMAKE_SYSTEM_PROCESSOR STREQUAL "riscv64")
+	string(APPEND CMAKE_C_STANDARD_LIBRARIES " -latomic")
+	string(APPEND CMAKE_CXX_STANDARD_LIBRARIES " -latomic")
+endif()
 # vim: expandtab:ts=2:sw=2:smartindent
