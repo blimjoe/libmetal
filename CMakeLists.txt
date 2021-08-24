@@ -9,6 +9,15 @@ endif()
 
 set (LIBMETAL_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 
+if (CMAKE_SYSTEM_PROCESSOR MATCHES riscv64)
+  set (CMAKE_SYSTEM_NAME Linux)
+  set (CMAKE_C_COMPILER ${CROSS_COMPILE}gcc)
+  set (CMAKE_CXX_COMPILER ${CROSS_COMPILE}g++)
+  set (LIBSYSFS_LIBRARY "${CMAKE_CURRENT_SOURCE_DIR}/third-party/libsysfs/riscv64/libsysfs.so")
+  set (LIBRT_LIBRARIES "${CMAKE_CURRENT_SOURCE_DIR}/third-party/librt/riscv64/librt.so")
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third-party/include/riscv64/)
+endif()
+
 list (APPEND CMAKE_MODULE_PATH
       "${CMAKE_CURRENT_SOURCE_DIR}/cmake"
       "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules"
